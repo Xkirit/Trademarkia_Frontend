@@ -5,14 +5,14 @@ import TableSection from '@/components/TableSection';
 import StaticTableHeaders from '@/components/StaticTable';
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
-import FilterOverlay from '@/components/FilterOverlay';
+import FilterOverlay from '@/components/FilterOverlay'; // Import FilterOverlay
 
 const HomePage = () => {
   const [tableData, setTableData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [displayMode, setDisplayMode] = useState<'list' | 'grid'>('list');
-  const [status, setStatus] = useState<string | null>(null);
+  const [displayMode, setDisplayMode] = useState<'list' | 'grid'>('list'); // Manage displayMode state
+  const [isFilterOpen, setIsFilterOpen] = useState(false); // Manage filter overlay visibility
 
   const handleSearch = async (search: string) => {
     setLoading(true);
@@ -66,6 +66,7 @@ const HomePage = () => {
         mark_description_description: hit._source.mark_description_description[0],
         mark_identification: hit._source.mark_identification,
         filing_date: hit._source.filing_date,
+        first_use_anywhere_date: hit._source.first_use_anywhere_date, // Ensure this field is included
       }));
 
       setTableData(hits);
@@ -77,13 +78,33 @@ const HomePage = () => {
     }
   };
 
+  const toggleFilter = () => {
+    setIsFilterOpen(!isFilterOpen);
+  };
+
   return (
     <div className="mt-10 px-2 sm:px-4 md:px-6 lg:px-8">
       <Header 
         onSearch={handleSearch} 
         setError={setError}
       />
-      <Navbar />
+      <Navbar onFilterClick={toggleFilter} className="sticky top-0 z-50" /> {/* Make Navbar sticky */}
+      {isFilterOpen && (
+        
+        <FilterOverlay 
+          isOpen={isFilterOpen} 
+          onClose={toggleFilter} 
+          setDisplayMode={setDisplayMode} // Pass setDisplayMode to FilterOverlay
+        />
+    
+        
+      )}
+
+      <div className='flex justify-end'>
+        <button className='bg-orange-200 text-orange-700 px-3 py-1 rounded-xl text-xs sm:text-sm'>Clear All</button>
+      </div>
+
+
       <div className="container mx-auto mt-6 px-2 sm:px-4 md:px-6 lg:px-8">
         <table className="w-full">
           {!tableData.length && <StaticTableHeaders />}

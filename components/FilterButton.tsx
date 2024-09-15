@@ -42,7 +42,7 @@ const FilterButton: React.FC = () => {
   }, [isOpen]);
 
   return (
-    <div className="relative ml-auto mt-12" ref={buttonRef}>
+    <div className="relative ml-auto " ref={buttonRef}>
       <button
         className="w-24 h-10 px-3 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 flex items-center justify-center"
         onClick={toggleOverlay}

@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = ({ onSearch, setError }) => {
   };
 
   return (
-    <header className="w-full bg-white border-b-[6px] border-[#EAF1FF] py-4">
+    <header className="sticky top-0 z-50 w-full bg-white border-b-[6px] border-[#EAF1FF] py-4">
       <div className="container mx-auto flex flex-col sm:flex-row items-center justify-start py-4 px-2 sm:px-4 md:px-6 lg:px-8 gap-14">
         <div className="w-40 h-6 mb-4 sm:mb-0">
           <img

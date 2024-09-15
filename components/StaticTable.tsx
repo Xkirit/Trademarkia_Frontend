@@ -1,10 +1,10 @@
 const StaticTableHeaders: React.FC = () => (
   <thead>
-    <tr className="grid grid-cols-2 sm:grid-cols-4 gap-4 items-start bg-white p-4 border-b">
-      <th className="py-2 px-2 sm:px-4 text-left text-sm sm:text-base">Mark</th>
-      <th className="py-2 px-2 sm:px-4 text-left text-sm sm:text-base">Details</th>
-      <th className="py-2 px-2 sm:px-4 text-left text-sm sm:text-base">Status</th>
-      <th className="py-2 px-2 sm:px-4 text-left text-sm sm:text-base">Class/Description</th>
+    <tr className="grid grid-cols-4 sm:col-span-2 items-center bg-white p-4 hover:bg-gray-100 rounded-lg">
+      <td className="py-2 pl-1">Mark</td>
+      <td className="py-2 ">Details</td>
+      <td className="py-2">Status</td>
+      <td className="py-2">Class/Description</td>
     </tr>
   </thead>
 );
