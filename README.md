@@ -15,7 +15,7 @@ To get started with the project, follow these steps:
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/trademarkia-app.git
+    git clone https://github.com/Xkirit/trademarkia-app.git
     cd trademarkia-app
     ```
 
