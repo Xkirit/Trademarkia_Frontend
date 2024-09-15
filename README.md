@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Trademarkia App
 
-## Getting Started
+This Assignment is a clone of the trademarkia search frontend.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [License](#license)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To get started with the project, follow these steps:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/Xkirit/21BCE3529_Frontend.git
+    cd trademarkia-app
+    ```
 
-## Learn More
+2. **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Open your browser and navigate to:**
+    ```
+    http://localhost:3000
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+- **Search:** Use the search bar at the top to search for trademarks.
+- **Filter:** Click on the filter button in the navbar to open the filter overlay and customize your search results.
+- **Display Modes:** Toggle between list and grid display modes using the filter overlay.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Responsive Design:** The application is designed to work on various screen sizes.
+- **Search Functionality:** Fetches trademark data from an API based on user input.
+- **Filter Overlay:** Allows users to filter search results and change display modes.
+- **Sticky Navbar:** The navbar remains at the top of the page when scrolling.
+- **Error Handling:** Displays error messages when data fetching fails.
+- **Loading State:** Shows a loading indicator while data is being fetched.
