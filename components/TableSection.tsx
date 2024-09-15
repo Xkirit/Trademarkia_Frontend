@@ -117,6 +117,11 @@ const TableSection: React.FC<TableSectionProps> = ({ data, displayMode }) => {
                   <span className="text-sm font-light flex items-center justify-center gap-1">on </span>
                   {new Date(item.filing_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
                 </p><br /><br />
+              
+                <p className="text-sm font-semibold flex items-center justify-start gap-1">
+                  <img src='/refresh.png' alt="refresh page" className="w-[15px] h-[12px] flex items-center justify-center" />
+                  {new Date(item.first_use_anywhere_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
+                </p>
               </>
             ) : item.status_type === 'pending' ? (
               <>
