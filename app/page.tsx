@@ -78,19 +78,19 @@ const HomePage = () => {
   };
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 px-2 sm:px-4 md:px-6 lg:px-8">
       <Header 
         onSearch={handleSearch} 
         setError={setError}
       />
       <Navbar />
-      <div className="container mx-auto mt-6">
-        <table>
+      <div className="container mx-auto mt-6 px-2 sm:px-4 md:px-6 lg:px-8">
+        <table className="w-full">
           {!tableData.length && <StaticTableHeaders />}
           <tbody>
-            {error && <tr><td colSpan={6} className="text-red-500">{error}</td></tr>}
+            {error && <tr><td colSpan={6} className="text-red-500 text-center">{error}</td></tr>}
             {tableData.length > 0 && <TableSection data={tableData} displayMode={displayMode} />}
-            {loading && <tr><td colSpan={6}>Loading...</td></tr>}
+            {loading && <tr><td colSpan={6} className="text-center">Loading...</td></tr>}
           </tbody>
         </table>
       </div>

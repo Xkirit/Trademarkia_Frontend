@@ -1,6 +1,8 @@
 import DOMPurify from 'dompurify';
 import StaticTableHeaders from '@/components/StaticTable'; // Import the StaticTableHeaders component
 
+
+
 interface TableSectionProps {
   data: {
     id: string;
@@ -12,11 +14,12 @@ interface TableSectionProps {
     status_date: string;
     renewal_date: string;
     mark_description_description: string | string[];
-    mark_identification: string;
-    filing_date: number;
-    first_use_anywhere_date: number;
+    mark_identification: string; // String or array
+    filing_date: number; // Add this line
+    first_use_anywhere_date: number; // Add this line
   }[];
-  displayMode: 'list' | 'grid'; // Define as a union type
+  displayMode:string;
+  
 }
 
 const sanitizeHtml = (html: string) => {
@@ -31,14 +34,14 @@ export const truncateText = (text: string, wordLimit: number): string => {
   return text;
 };
 
-const TableSection: React.FC<TableSectionProps> = ({ data, displayMode }) => {
+const TableSection: React.FC<TableSectionProps> = ({ data,displayMode }) => {
   if (displayMode === 'grid') {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {data.map((item) => (
           <div key={item.id} className="bg-white p-4 shadow-lg rounded-lg">
-            <div className="flex justify-center items-center border border-gray-300 shadow-lg w-full h-[120px] mb-4">
-              <img src={`https://static.trademarkia.com/images/${item.id}`} alt={item.mark} className="px-3 py-8" />
+            <div className="flex justify-center items-center border border-gray-300 shadow-lg w-full h-[120px] mb-4 rounded-lg">
+              <img src={`https://static.trademarkia.com/images/${item.id}`} alt={item.mark} className="px-3 py-8 " />
             </div>
             <div className="flex flex-col justify-center">
               <p className="text-md font-bold">{item.mark_identification}</p>
@@ -54,13 +57,9 @@ const TableSection: React.FC<TableSectionProps> = ({ data, displayMode }) => {
                     Live/Registered
                   </span>
                   <p className="text-sm font-semibold flex items-center justify-start gap-1">
-                    <span className="text-sm font-light flex items-center justify-center gap-1">on </span>
-                    {new Date(item.filing_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
-                  </p><br /><br />
-                  <p className="text-sm font-semibold flex items-center justify-start gap-1">
-                    <img src='/refresh.png' alt="refresh page" className="w-[15px] h-[12px] flex items-center justify-center" />
-                    {new Date(item.first_use_anywhere_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
-                  </p>
+                    <p className="text-sm font-light flex items-center justify-center gap-1">on </p>
+                    {new Date(item.filing_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p><br /><br />
+                  <p className="text-sm font-semibold flex items-center justify-start gap-1"><img src='/refresh.png' alt="refresh page" className="w-[15px] h-[12px] flex items-center justify-center" />{new Date(item.first_use_anywhere_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
                 </>
               ) : item.status_type === 'pending' ? (
                 <>
@@ -69,9 +68,8 @@ const TableSection: React.FC<TableSectionProps> = ({ data, displayMode }) => {
                     Live/Pending
                   </span>
                   <p className="text-xs font-semibold flex items-center justify-start gap-1">
-                    <span className="text-xs font-light flex items-center justify-center gap-1">on </span>
-                    {new Date(item.filing_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
-                  </p><br /><br />
+                    <p className="text-xs font-light flex items-center justify-center gap-1">on </p>
+                    {new Date(item.filing_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p><br /><br />
                 </>
               ) : (
                 item.status_type
@@ -91,12 +89,11 @@ const TableSection: React.FC<TableSectionProps> = ({ data, displayMode }) => {
     );
   }
 
-  // List View
   return (
     <div className="grid grid-cols-1 gap-6 sm:w-[400px] md:w-[720px] lg:w-[955px]">
       <StaticTableHeaders />
       {data.map((item) => (
-        <div key={item.id} className="grid grid-cols-4 sm:col-span-2 gap-6 items-center bg-white p-4">
+        <div key={item.id} className="grid grid-cols-4 sm:col-span-2 gap-6 items-center bg-white p-4 hover:bg-gray-100 rounded-lg">
           <div className="flex justify-center items-center border border-gray-300 shadow-lg w-[158px] h-[120px]">
             <img src={`https://static.trademarkia.com/images/${item.id}`} alt={item.mark} className="px-3 py-8" />
           </div>
@@ -114,13 +111,9 @@ const TableSection: React.FC<TableSectionProps> = ({ data, displayMode }) => {
                   Live/Registered
                 </span>
                 <p className="text-sm font-semibold flex items-center justify-start gap-1">
-                  <span className="text-sm font-light flex items-center justify-center gap-1">on </span>
-                  {new Date(item.filing_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
-                </p><br /><br />
-                <p className="text-sm font-semibold flex items-center justify-start gap-1">
-                  <img src='/refresh.png' alt="refresh page" className="w-[15px] h-[12px] flex items-center justify-center" />
-                  {new Date(item.first_use_anywhere_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
-                </p>
+                  <p className="text-sm font-light flex items-center justify-center gap-1">on </p>
+                  {new Date(item.filing_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p><br /><br />
+                <p className="text-sm font-semibold flex items-center justify-start gap-1"><img src='/refresh.png' alt="refresh page" className="w-[15px] h-[12px] flex items-center justify-center" />{new Date(item.first_use_anywhere_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
               </>
             ) : item.status_type === 'pending' ? (
               <>
@@ -129,13 +122,12 @@ const TableSection: React.FC<TableSectionProps> = ({ data, displayMode }) => {
                   Live/Pending
                 </span>
                 <p className="text-xs font-semibold flex items-center justify-start gap-1">
-                  <span className="text-xs font-light flex items-center justify-center gap-1">on </span>
-                  {new Date(item.filing_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
-                </p><br /><br />
-              </>
-            ) : (
-              item.status_type
-            )}
+                  <p className="text-xs font-light flex items-center justify-center gap-1">on </p>
+                  {new Date(item.filing_date * 1000).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p><br /><br />
+                </>
+              ) : (
+                item.status_type
+              )}
           </div>
           <div dangerouslySetInnerHTML={sanitizeHtml(
             truncateText(
@@ -151,4 +143,7 @@ const TableSection: React.FC<TableSectionProps> = ({ data, displayMode }) => {
   );
 };
 
-export default TableSection;
+
+export default TableSection
+
+

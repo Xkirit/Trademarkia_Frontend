@@ -8,8 +8,7 @@ interface FilterOverlayProps {
   isOpen: boolean;
   onClose: () => void;
   onFilterChange?: (filters: FilterState) => void;  // Make this prop optional
-  setDisplaYMode: React.Dispatch<React.SetStateAction<string>>;
-  setDisplayMode: (mode: 'grid' | 'list') => void; // Add setDisplayMode prop
+  setDisplayMode: React.Dispatch<React.SetStateAction<'grid' | 'list'>>; // Corrected type and name
 }
 
 interface FilterState {
@@ -17,14 +16,14 @@ interface FilterState {
   owners: string[];
   lawFirms: string[];
   attorneys: string[];
-  displayMode: string;
+  displayMode: 'grid' | 'list'; // Changed to specific types
 }
 
 const FilterOverlay: React.FC<FilterOverlayProps> = ({
   isOpen,
   onClose,
-  onFilterChange,
-  setDisplayMode, // Add setDisplayMode prop
+  onFilterChange, // Ensure this is destructured
+  setDisplayMode, // Correct name
 }) => {
   const [filters, setFilters] = useState<FilterState>({
     status: 'All',
@@ -34,7 +33,6 @@ const FilterOverlay: React.FC<FilterOverlayProps> = ({
     displayMode: 'list', // Initialize with 'list'
   });
   const [searchTerm, setSearchTerm] = useState('');
-  const [DisplayMode, setDisplaYMode] = useState('');
 
   if (!isOpen) return null;
 
@@ -59,14 +57,14 @@ const FilterOverlay: React.FC<FilterOverlayProps> = ({
   const handleStatusSelect = (statusName: string) => {
     const newFilters = { ...filters, status: statusName };
     setFilters(newFilters);
-    onFilterChange && onFilterChange(newFilters);  // Call only if onFilterChange is provided
+    onFilterChange && onFilterChange(newFilters);  // Use destructured prop
     console.log(newFilters);
   };
 
   const handleDisplayModeChange = (mode: 'grid' | 'list') => {
     const newFilters = { ...filters, displayMode: mode };
     setFilters(newFilters);
-    setDisplayMode(mode); // Update the display mode in the parent component
+    setDisplayMode(mode); // Update parent state
   };
 
   const handleCheckboxChange = (category: 'owners' | 'lawFirms' | 'attorneys', item: string) => {
@@ -78,7 +76,7 @@ const FilterOverlay: React.FC<FilterOverlayProps> = ({
       newFilters[category].push(item);
     }
     setFilters(newFilters);
-    onFilterChange && onFilterChange(newFilters);  // Call only if onFilterChange is provided
+    onFilterChange && onFilterChange(newFilters);  // Use destructured prop
     console.log(newFilters);
   };
 
@@ -114,7 +112,7 @@ const FilterOverlay: React.FC<FilterOverlayProps> = ({
                 <Tab
                   key={tab.name}
                   className={({ selected }) =>
-                    `  text-sm font-medium leading-5 ${
+                    `text-sm font-medium leading-5 ${
                       selected
                         ? 'text-black border-b-2 border-black'
                         : 'text-gray-500 hover:text-gray-700'

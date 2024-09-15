@@ -56,7 +56,9 @@ const FilterButton: React.FC = () => {
           <FilterOverlay
             isOpen={isOpen}
             onClose={closeOverlay}
-            setDisplayMode={setDisplayMode} // Pass setDisplayMode as a prop
+            setDisplayMode={setDisplayMode} // Corrected prop name and type
+            // Optionally pass onFilterChange if needed
+            // onFilterChange={handleFilterChange}
           />
         </div>
       )}
