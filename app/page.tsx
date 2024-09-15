@@ -100,9 +100,9 @@ const HomePage = () => {
         
       )}
 
-      <div className='flex justify-end'>
+      {/* <div className='flex justify-end'>
         <button className='bg-orange-200 text-orange-700 px-3 py-1 rounded-xl text-xs sm:text-sm'>Clear All</button>
-      </div>
+      </div> */}
 
 
       <div className="container mx-auto mt-6 px-2 sm:px-4 md:px-6 lg:px-8">
