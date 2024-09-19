@@ -105,7 +105,7 @@ const HomePage = () => {
           {!tableData.length && <StaticTableHeaders />}
           <tbody>
             {error && <tr><td colSpan={6} className="text-red-500 text-center">{error}</td></tr>}
-            {tableData.length > 0 && <TableSection data={tableData} displayMode={displayMode} />}
+            {tableData.length > 0 && <TableSection data={tableData} displayMode="list" />}
             {loading && <tr><td colSpan={6} className="text-center">Loading...</td></tr>}
           </tbody>
         </table>
